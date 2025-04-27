@@ -15,7 +15,7 @@ function UniqueURL({ uniqueURL }) {
         <div className="w-6/8 border h-10 flex items-center justify-center rounded-l-xl  ">
           <input
             type="text"
-            value={uniqueURL}
+            value={uniqueURL || ""}
             ref={inputRef}
             readOnly
             className="text-[16px] w-full text-center outline-none"

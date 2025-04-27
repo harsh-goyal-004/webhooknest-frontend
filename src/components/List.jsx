@@ -30,7 +30,7 @@ function List({ uniqueURL, handleLogs }) {
   return (
     <>
       <div className="flex flex-col border-t-1 text-center hover:cursor-pointer  bg-gray-50 ">
-        {requestList.length > 0
+        {Array.isArray(requestList) && requestList.length > 0
           ? requestList.map((request, index) => (
               <div
                 className="py-2 border-b-1 w-full active:bg-gray-100 font-medium"
