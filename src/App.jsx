@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import Header from "./components/Header";
 import axios from "axios";
 import UniqueURL from "./components/UniqueURL";
+import List from "./components/List";
+import RequestDetails from "./components/RequestDetails";
 
 function App() {
   const [link, setLink] = useState("");
+  const [requestLogs, setRequestLogs] = useState();
 
   // Check if a unique URL already exist in localStorage or else generate one
   useEffect(() => {
@@ -23,13 +26,23 @@ function App() {
     }
   }, []);
 
+  const handleLogs = (log) => {
+    setRequestLogs(log);
+  };
+
   return (
     <>
       <header>
         <Header />
       </header>
-      <main className="pt-30">
-        <UniqueURL uniqueURL={link} />
+      <main className="pt-17 flex h-full">
+        <div className="w-1/3 min-h-screen bg-gray-100">
+          <UniqueURL uniqueURL={link} />
+          <List uniqueURL={link} handleLogs={handleLogs} />
+        </div>
+        <div className="w-2/3">
+          <RequestDetails requestLog={requestLogs} />
+        </div>
       </main>
     </>
   );
