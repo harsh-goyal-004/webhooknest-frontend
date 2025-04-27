@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import utc from "dayjs/plugin/utc";
 
 function List({ uniqueURL, handleLogs }) {
   const [requestList, setRequestList] = useState([]);
 
   // Set dayjs as Relative Time
   dayjs.extend(relativeTime);
+  dayjs.extend(utc);
 
   // Check for new requests after every 1 second
   useEffect(() => {
@@ -35,7 +37,7 @@ function List({ uniqueURL, handleLogs }) {
                 onClick={() => handleLogs(request)}
                 key={index}
               >
-                {dayjs(request.timestamp).fromNow()}
+                {dayjs.utc(request.timestamp).local().fromNow()}
               </div>
             ))
           : null}

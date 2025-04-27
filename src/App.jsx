@@ -8,19 +8,20 @@ import RequestDetails from "./components/RequestDetails";
 function App() {
   const [link, setLink] = useState("");
   const [requestLogs, setRequestLogs] = useState();
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   // Check if a unique URL already exist in localStorage or else generate one
   useEffect(() => {
-    const checkLink = localStorage.getItem("uniqueURL");
+    const binId = localStorage.getItem("BinId");
 
-    if (checkLink !== null) {
-      setLink(checkLink);
+    if (binId !== null) {
+      setLink(`${apiUrl}/${binId}`);
     } else {
       axios
-        .get("http://localhost:8080/api/bins")
+        .get(`${apiUrl}/bins`)
         .then((response) => {
           setLink(response.data.endpoint);
-          localStorage.setItem("uniqueURL", response.data.endpoint);
+          localStorage.setItem("BinId", response.data.binId);
         })
         .catch((error) => console.log(error));
     }
