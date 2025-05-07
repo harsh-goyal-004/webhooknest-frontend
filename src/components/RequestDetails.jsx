@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
+import { requestInfoContext } from "../context/context";
 
-function RequestDetails({ requestLog }) {
+function RequestDetails() {
+  const requestLog = useContext(requestInfoContext);
   let requestHeader;
   let requestBody;
   if (requestLog != null) {

@@ -3,13 +3,17 @@ import axios from "axios";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import utc from "dayjs/plugin/utc";
+import { useNavigate } from "react-router-dom";
+import { useMediaQuery } from "@mui/material";
 
-function List({ uniqueURL, handleLogs }) {
+// Set dayjs as Relative Time
+dayjs.extend(relativeTime);
+dayjs.extend(utc);
+
+function List({ uniqueURL, logs }) {
   const [requestList, setRequestList] = useState([]);
-
-  // Set dayjs as Relative Time
-  dayjs.extend(relativeTime);
-  dayjs.extend(utc);
+  const navigate = useNavigate();
+  const isMobile = useMediaQuery("(max-width:770px)");
 
   // Check for new requests after every 1 second
   useEffect(() => {
@@ -34,7 +38,7 @@ function List({ uniqueURL, handleLogs }) {
           ? requestList.map((request, index) => (
               <div
                 className="py-2 border-b-1 w-full active:bg-gray-100 font-medium"
-                onClick={() => handleLogs(request)}
+                onClick={() => logs(request)}
                 key={index}
               >
                 {dayjs.utc(request.timestamp).local().fromNow()}
