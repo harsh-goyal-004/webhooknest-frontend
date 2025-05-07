@@ -30,9 +30,15 @@ function Home({ handleLogs }) {
     }
   }, []);
 
-  function logs(log) {
+  // Navigate to new screen in mobile
+  function mobileLogs(log) {
     handleLogs(log);
     navigate("/request-details");
+  }
+
+  //Stay on the same screen in desktop
+  function desktopLogs(log) {
+    handleLogs(log);
   }
 
   return (
@@ -46,7 +52,7 @@ function Home({ handleLogs }) {
           <main className="w-full mt-18">
             <div className="w-full">
               <UniqueURL uniqueURL={link} />
-              <List uniqueURL={link} logs={logs} />
+              <List uniqueURL={link} logs={mobileLogs} />
             </div>
           </main>
         </>
@@ -59,7 +65,7 @@ function Home({ handleLogs }) {
           <main className="pt-17 flex h-full">
             <div className="w-1/3 min-h-screen bg-gray-100">
               <UniqueURL uniqueURL={link} />
-              <List uniqueURL={link} logs={logs} />
+              <List uniqueURL={link} logs={desktopLogs} />
             </div>
             <div className={"w-2/3"}>
               <RequestDetails />
