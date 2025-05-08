@@ -8,13 +8,15 @@ import {
 } from "react-router-dom";
 import RequestDetails from "./components/RequestDetails";
 import { requestInfoContext } from "./context/context";
+import LandingPage from "./components/LandingPage";
 
 function App() {
   const [requestLogs, setRequestLogs] = useState();
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route>
-        <Route path="/" element={<Home handleLogs={handleLogs} />} />
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/home" element={<Home handleLogs={handleLogs} />} />
         <Route path="/request-details" element={<RequestDetails />} />
       </Route>
     )

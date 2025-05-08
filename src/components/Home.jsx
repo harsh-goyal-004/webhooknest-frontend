@@ -6,6 +6,7 @@ import List from "./List";
 import RequestDetails from "./RequestDetails";
 import { useMediaQuery } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import Footer from "./Footer";
 
 function Home({ handleLogs }) {
   const [link, setLink] = useState("");
@@ -73,6 +74,8 @@ function Home({ handleLogs }) {
           </main>
         </>
       )}
+      {/* Footer */}
+      <Footer />
     </>
   );
 }
