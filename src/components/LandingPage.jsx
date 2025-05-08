@@ -69,9 +69,10 @@ function LandingPage() {
             {/* Step 1 */}
             <motion.div
               ref={step1Ref}
-              initial={{ x: -400, opacity: 0 }}
+              initial={{ x: -200, opacity: 0 }}
               animate={step1InView ? { x: 0, opacity: 1 } : {}}
               transition={{ duration: 0.7, delay: 0.2, ease: "easeInOut" }}
+              viewport={{ once: true, amount: 0.3 }}
               className="flex flex-col md:flex-row items-center justify-around gap-10 md:gap-0"
             >
               <div className="sansation w-full text-center md:w-2/6">
@@ -97,6 +98,7 @@ function LandingPage() {
               initial={{ x: 500, opacity: 0 }}
               animate={step2InView ? { x: 0, opacity: 1 } : {}}
               transition={{ duration: 0.7, delay: 0.2, ease: "easeInOut" }}
+              viewport={{ once: true, amount: 0.3 }}
               className="flex flex-col md:flex-row items-center justify-around gap-10 md:gap-0"
             >
               <div className="sansation md:w-2/6 text-center md:order-2">
@@ -116,9 +118,10 @@ function LandingPage() {
             {/* Step 3 */}
             <motion.div
               ref={step3Ref}
-              initial={{ x: -400, opacity: 0 }}
+              initial={{ x: -200, opacity: 0 }}
               animate={step3InView ? { x: 0, opacity: 1 } : {}}
               transition={{ duration: 0.7, delay: 0.2, ease: "easeInOut" }}
+              viewport={{ once: true, amount: 0.3 }}
               className="flex flex-col md:flex-row items-center justify-around gap-10 md:gap-0"
             >
               <div className="sansation md:w-2/6 text-center">
