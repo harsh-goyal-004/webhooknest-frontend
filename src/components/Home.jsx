@@ -7,6 +7,7 @@ import RequestDetails from "./RequestDetails";
 import { useMediaQuery } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
+import Loading from "./Loading";
 
 function Home({ handleLogs }) {
   const [link, setLink] = useState("");
@@ -29,7 +30,7 @@ function Home({ handleLogs }) {
         })
         .catch((error) => console.log("Error while fetching URL : ", error));
     }
-  }, []);
+  }, [link]);
 
   // Navigate to new screen in mobile
   function mobileLogs(log) {
@@ -44,38 +45,44 @@ function Home({ handleLogs }) {
 
   return (
     <>
-      {isMobile ? (
+      {link !== "" ? (
         <>
-          {/* Mobile View */}
-          <header>
-            <Header />
-          </header>
-          <main className="w-full mt-18">
-            <div className="w-full">
-              <UniqueURL uniqueURL={link} />
-              <List uniqueURL={link} logs={mobileLogs} />
-            </div>
-          </main>
+          {isMobile ? (
+            <>
+              {/* Mobile View */}
+              <header>
+                <Header />
+              </header>
+              <main className="w-full mt-18">
+                <div className="w-full">
+                  <UniqueURL uniqueURL={link} />
+                  <List uniqueURL={link} logs={mobileLogs} />
+                </div>
+              </main>
+            </>
+          ) : (
+            <>
+              {/* Desktop View */}
+              <header>
+                <Header />
+              </header>
+              <main className="pt-17 flex h-full">
+                <div className="w-1/3 min-h-screen bg-gray-100">
+                  <UniqueURL uniqueURL={link} />
+                  <List uniqueURL={link} logs={desktopLogs} />
+                </div>
+                <div className={"w-2/3"}>
+                  <RequestDetails />
+                </div>
+              </main>
+            </>
+          )}
+          {/* Footer */}
+          <Footer />
         </>
       ) : (
-        <>
-          {/* Desktop View */}
-          <header>
-            <Header />
-          </header>
-          <main className="pt-17 flex h-full">
-            <div className="w-1/3 min-h-screen bg-gray-100">
-              <UniqueURL uniqueURL={link} />
-              <List uniqueURL={link} logs={desktopLogs} />
-            </div>
-            <div className={"w-2/3"}>
-              <RequestDetails />
-            </div>
-          </main>
-        </>
+        <Loading />
       )}
-      {/* Footer */}
-      <Footer />
     </>
   );
 }
